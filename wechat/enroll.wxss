@@ -1,0 +1,10 @@
+/* enroll.wxss */
+.flex-wrp{
+  margin-top: 15rpx;
+  display:flex;
+}
+.flex-item{
+  width: 200rpx;
+  height: 26rpx;
+  font-size: 26rpx;
+}

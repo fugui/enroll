@@ -1,0 +1,66 @@
+<view  class="section">
+  <view class="page-head">
+    <view class="page-head-title">信息绑定</view>
+    <view class="page-head-line"></view>
+    <view class="page-head-desc">
+      与具体学生绑定后， 才能进行信息申报、报名等操作（当前每个家长仅限绑定一个学生）。
+    </view>
+  </view>
+</view>
+
+<view class="page-body">
+  <view class="page-section">
+    <view class="weui-cells__title">所在学校</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <picker bindchange="bindPickerChange" value="{{schoolIndex}}" range="{{schools}}">
+            <view class="weui-input fgui-center">{{schools[schoolIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">所在班级</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <picker bindchange="bindPickerChange" value="{{classIndex}}" range="{{classes}}">
+            <view class="weui-input fgui-center">{{classes[classIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="weui-cells__title">学生姓名</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <picker bindchange="bindStudentChange" value="{{studentIndex}}" range="{{students}}">
+            <view class="weui-input fgui-center">{{students[studentIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="weui-cells__title">监护人类型（关系）</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <picker bindchange="bindGuardianChange" value="{{guardianIndex}}" range="{{guardians}}">
+            <view class="weui-input fgui-center">{{guardians[guardianIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="flex-item bc_blue">
+      <button type="primary" bindtap="onBind"> 绑 定 </button>
+    </view>
+  </view>
+
+
+</view>

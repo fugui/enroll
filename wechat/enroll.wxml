@@ -1,0 +1,54 @@
+<view wx:if="{{!app.globalData.hasLogin}}" class="section">
+  <view class="weui-cells__title">放学信息申报，您的信息还未绑定，申报请先绑定</view>
+  <view class="weui-cells weui-cells_after-title">
+    <button type="primary" bindtap="toBind"> 绑 定 </button>
+  </view>
+</view>
+
+<view wx:else class="section">
+  <view class="weui-cells__title">傅薪桦今日还未申报，其今日回家时间：</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <picker mode="time" value="{{backHome}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+        <view class="weui-input fgui-center">{{backHome}}</view>
+      </picker>
+      <button type="primary" bindtap="primary"> 申 报 </button>
+    </view>
+  </view>
+</view>
+
+<view class="page-section-spacing">
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item ">学生</view>
+    <view class="flex-item ">到家时间</view>
+    <view class="flex-item ">申报者</view>
+    <view class="flex-item ">申报时间</view>
+  </view>
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item ">01 龚哲敏</view>
+    <view class="flex-item ">17:15</view>
+    <view class="flex-item ">妈妈</view>
+    <view class="flex-item ">17:18</view>
+  </view>
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item ">17 傅薪桦</view>
+    <view class="flex-item ">16:50</view>
+    <view class="flex-item ">爸爸</view>
+    <view class="flex-item ">16:51</view>
+  </view>
+
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item ">50 习同学</view>
+    <view class="flex-item ">18:05</view>
+    <view class="flex-item ">阿姨（其它监护人）</view>
+    <view class="flex-item ">18:30</view>
+  </view>
+
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item ">51 李同学</view>
+    <view class="flex-item ">18:30</view>
+    <view class="flex-item ">爷爷</view>
+    <view class="flex-item ">18:31</view>
+  </view>
+
+</view>
