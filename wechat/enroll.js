@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+      globalData : {},
       backHome: "17:10"
   },
 
@@ -18,7 +19,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var d = new Date();
+    this.setData( {
+      globalData : getApp().globalData,
+      backHome: d.getHours() + ":" + d.getMinutes()
+    });
+    console.log( this.data.globalData );
   },
 
   /**

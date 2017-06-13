@@ -37,8 +37,8 @@
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <picker bindchange="bindStudentChange" value="{{studentIndex}}" range="{{students}}">
-            <view class="weui-input fgui-center">{{students[studentIndex]}}</view>
+          <picker bindchange="bindStudentChange" value="{{sIdx}}" range="{{globalData.students}}">
+            <view class="weui-input fgui-center">{{globalData.students[sIdx]}}</view>
           </picker>
         </view>
       </view>
@@ -49,8 +49,8 @@
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <picker bindchange="bindGuardianChange" value="{{guardianIndex}}" range="{{guardians}}">
-            <view class="weui-input fgui-center">{{guardians[guardianIndex]}}</view>
+          <picker bindchange="bindGuardianChange" value="{{gIdx}}" range="{{globalData.guardians}}">
+            <view class="weui-input fgui-center">{{globalData.guardians[gIdx]}}</view>
           </picker>
         </view>
       </view>

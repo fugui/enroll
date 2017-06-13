@@ -7,46 +7,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     schools: ['深圳外国语初中部'],
     schoolIndex : 0,
 
     classes: ['初二（3）班'],
     classIndex: 0,
 
-    students: ['01 龚哲敏', '02 龚芷墨', '03 龚皓玉', '04 黄可欣', '05 蒋兴悦', '06 柯杨', '07 黎柯艺', '09 孙艺鸣', '10 谭馨月', '11 张国铃', '41 田智康'],
-    studentIndex: 0,
+    globalData: {},
 
-    guardians: ['妈妈', '爸爸', '爷爷', '奶奶','外公','外婆','阿姨(及其他监护人)'],
-    guardianIndex: 0,
-
-
-    date: '2016-09-01',
-    time: '12:01'
+    sIdx : -1,
+    gIdx : -1
   },
 
   onBind: function(e) {
-    app.login( data.studentIndex, data.guardianIndex );
+    app.login( this.data.sIdx, this.data.gIdx );
     wx.redirectTo({ "url":"enroll" });
   },
 
   bindStudentChange: function (e) {
-    this.setData({
-      studentIndex: e.detail.value
-    })
+    this.setData ({
+      sIdx: e.detail.value
+    });    
   },
 
   bindGuardianChange: function(e) {
-    this.setData({
-      guardianIndex: e.detail.value
-    })
+    this.setData ( {
+      gIdx: e.detail.value
+    });  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      
+    this.setData({
+      globalData: getApp().globalData
+    });
   },
 
   /**

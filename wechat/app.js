@@ -1,26 +1,31 @@
 App({
   globalData: {
+    students: ['01 龚哲敏', '02 龚芷墨', '03 龚皓玉', '04 黄可欣', '05 蒋兴悦', '06 柯杨', '07 黎柯艺', '09 孙艺鸣', '10 谭馨月', '11 张国铃', '41 田智康'],
+
+    guardians: ['妈妈', '爸爸', '爷爷', '奶奶', '外公', '外婆', '阿姨(及其他监护人)'],
+
+
     studentIndex: -1,
     guardianIndex: -1,
     hasLogin: false
   },
-  
+
   onLaunch: function () {
     var storageData = wx.getStorageSync("studentIndex");
     var s2 = wx.getStorageSync( "guardianIndex" );
 
     if (storageData === "" || s2==="") {
       
-        globalData.studentIndex= -1;
-        globalData.guardianIndex = -1;
-        globalData.hasLogin =false;
-   
+        this.globalData.studentIndex= -1;
+        this.globalData.guardianIndex = -1;
+        this.globalData.hasLogin =false;
     }
     else {
-      globalData.studentIndex = storageData;
-      globalData.hasLogin = true;
+      this.globalData.studentIndex = storageData;
+      this.globalData.guardianIndex = s2;
+      this.globalData.hasLogin = true;
     }
-    console.log('App Launch')
+    console.log('App Launched' + this.globalData.studentIndex + '  ' + this.globalData.guardianIndex );
   },
   onShow: function () {
     console.log('App Show')
@@ -31,10 +36,11 @@ App({
 
 
   login: function (sIdx, gIdx) {
-    wx.setStorageSync("studentIndex", sIdx);
-    wx.setStorageSync("guardianIndex", gIdx);
-    globalData.hasLogin = true;
-    globalData.studentIndex = sIdx;
-    globalData.guardianIndex = gIdx;
+    this.globalData.studentIndex = sIdx;
+    this.globalData.guardianIndex = gIdx;
+    wx.setStorageSync("studentIndex", this.globalData.studentIndex);
+    wx.setStorageSync("guardianIndex", this.globalData.guardianIndex);
+    this.globalData.hasLogin = true;
+    console.log('Customer logined, the sId:' + this.globalData.studentIndex + '  ' + this.globalData.guardianIndex);
   }
 });
