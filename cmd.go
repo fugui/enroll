@@ -2,17 +2,16 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"time"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
-
-}
-
 func main() {
-	fmt.Println("Hello, my enrolling!" + time.Now().String())
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
+
+	loc, _ := time.LoadLocation("Asia/Shanghai")
+
+	t := time.Now().In(loc)
+
+	thisYear := time.Date(2017, time.January, 1, 0, 0, 0, 0, loc)
+
+	fmt.Println(t, thisYear)
 }
