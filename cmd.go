@@ -1,17 +1,24 @@
 package main
 
 import (
-	"fmt"
-	"time"
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
+	rtr := mux.NewRouter()
+	rtr.HandleFunc("/user/{name:[a-z]+}/profile", profile).Methods("GET")
 
-	loc, _ := time.LoadLocation("Asia/Shanghai")
+	http.Handle("/", rtr)
 
-	t := time.Now().In(loc)
+	log.Println("Listening...")
+	http.ListenAndServe(":3000", nil)
+}
 
-	thisYear := time.Date(2017, time.January, 1, 0, 0, 0, 0, loc)
-
-	fmt.Println(t, thisYear)
+func profile(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	name := params["name"]
+	w.Write([]byte("Hello " + name))
 }

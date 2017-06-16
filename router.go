@@ -12,6 +12,10 @@ import (
 *     /enrolles/{enrollID}/items/    POST  GET
 **/
 
+func appendBackHome(w http.ResponseWriter, r *http.Request) {
+	//r.
+}
+
 func viewHandler(w http.ResponseWriter, r *http.Request) {
 	title := r.URL.Path[len("/view/"):]
 	p, _ := loadPage(title)
