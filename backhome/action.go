@@ -39,7 +39,7 @@ func Action(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 	}
 
-	fmt.Println("Post Item: ", body)
+	fmt.Println("Post Item: ", string(body))
 
 	// the first step, get all fields
 	var item backItem
