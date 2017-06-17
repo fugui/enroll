@@ -18,7 +18,7 @@ Page({
   onEnroll : function(e) {
     console.log( 'on enroll' )
     wx.request({
-      url: 'http://localhost/enrolles/backhome/items',
+      url: 'https://95858511.qcloud.la/enrolles/backhome/items',
       method: 'POST',
       data : {
         school: 'School Name',

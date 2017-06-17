@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -23,7 +22,7 @@ import (
  */
 type backItem struct {
 	School    string `json:"school"`
-	Class     string `json:"class"`
+	Class     string `json:"banji"`
 	Student   string `json:"student"`
 	BackTime  string `json:"backtime"`
 	ApplyBy   string `json:"applyby"`
@@ -35,12 +34,12 @@ func Action(w http.ResponseWriter, r *http.Request) {
 
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		log.Printf("Error reading body: %v", err)
+		fmt.Printf("Error reading body: %v", err)
 		http.Error(w, "can't read body", http.StatusBadRequest)
 		w.WriteHeader(http.StatusBadRequest)
 	}
 
-	log.Println("Post Item: ", body)
+	fmt.Println("Post Item: ", body)
 
 	// the first step, get all fields
 	var item backItem
@@ -108,7 +107,7 @@ func writeToday(item backItem) bool {
 func GetHistory(w http.ResponseWriter, r *http.Request) {
 	date := r.URL.Query().Get("date")
 	if date != "" {
-		log.Println("Query history for ", date)
+		fmt.Println("Query history for ", date)
 
 		fileName := "backhome-" + date + ".json"
 		data, err := ioutil.ReadFile(fileName)
