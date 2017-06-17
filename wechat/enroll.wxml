@@ -26,31 +26,12 @@
     <view class="flex-item ">申报者</view>
     <view class="flex-item ">申报时间</view>
   </view>
-  <view class="flex-wrp" style="flex-direction:row;">
-    <view class="flex-item ">01 龚哲敏</view>
-    <view class="flex-item ">17:15</view>
-    <view class="flex-item ">妈妈</view>
-    <view class="flex-item ">17:18</view>
-  </view>
-  <view class="flex-wrp" style="flex-direction:row;">
-    <view class="flex-item ">17 傅薪桦</view>
-    <view class="flex-item ">16:50</view>
-    <view class="flex-item ">爸爸</view>
-    <view class="flex-item ">16:51</view>
-  </view>
+  <view wx:for="{{records}}" wx:key="student" class="flex-wrp" style="flex-direction:row;"
+      wx:if="{{item.student != ''}}">
+    <view class="flex-item ">{{item.student}}</view>
+    <view class="flex-item ">{{item.backtime}}</view>
+    <view class="flex-item ">{{item.applyby}}</view>
+    <view class="flex-item ">{{item.applytime}}</view>
 
-  <view class="flex-wrp" style="flex-direction:row;">
-    <view class="flex-item ">50 习同学</view>
-    <view class="flex-item ">18:05</view>
-    <view class="flex-item ">阿姨（其它监护人）</view>
-    <view class="flex-item ">18:30</view>
   </view>
-
-  <view class="flex-wrp" style="flex-direction:row;">
-    <view class="flex-item ">51 李同学</view>
-    <view class="flex-item ">18:30</view>
-    <view class="flex-item ">爷爷</view>
-    <view class="flex-item ">18:31</view>
-  </view>
-
 </view>

@@ -6,7 +6,8 @@ Page({
    */
   data: {
       globalData : {},
-      backHome: "17:10"
+      backHome: "17:10",
+      records : []
   },
 
   toBind: function(e) {
@@ -34,12 +35,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     var d = new Date();
     this.setData( {
       globalData : getApp().globalData,
       backHome: d.getHours() + ":" + d.getMinutes()
     });
-    console.log( this.data.globalData );
+    
+    wx.request({
+      url: 'https://95858511.qcloud.la/enrolles/backhome/items?date=' + getApp().today(),
+      method: 'GET',
+      success: function (res) {
+         that.setData( {
+           
+           records: res.data})
+          console.log(that.data.records[0])
+      }
+
+    })
+
   },
 
   /**

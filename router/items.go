@@ -14,7 +14,9 @@ func Items(w http.ResponseWriter, r *http.Request) {
 		backhome.GetHistory(w, r)
 	} else {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("error request"))
 	}
 
+	if r.Response.StatusCode >= 400 {
+		w.Write([]byte("error request"))
+	}
 }
