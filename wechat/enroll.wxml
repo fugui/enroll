@@ -7,7 +7,7 @@
 
 <view wx:else class="section">
   <view class="weui-cells__title">
-    {{globalData.students[globalData.studentIndex]}}今日还未申报，其今日回家时间：
+    {{student}}今日还未申报，其今日回家时间：
   </view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell weui-cell_input">
@@ -32,6 +32,5 @@
     <view class="flex-item ">{{item.backtime}}</view>
     <view class="flex-item ">{{item.applyby}}</view>
     <view class="flex-item ">{{item.applytime}}</view>
-
   </view>
 </view>

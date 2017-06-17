@@ -7,7 +7,9 @@ Page({
   data: {
       globalData : {},
       backHome: "17:10",
-      records : []
+      records : [],
+      student : '',
+      applied : false
   },
 
   toBind: function(e) {
@@ -24,8 +26,8 @@ Page({
       data : {
         school: 'School Name',
         banji:  'Middle(3)',
-        student: '01 Xijinpin',
-        backtime: '17:20',
+        student: this.data.student,
+        backtime: this.data.backHome,
         applyby : '01 Mother'
       }
     })
@@ -36,6 +38,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    var s = getApp().getStudent();
+    this.setData({student:s } )
+
     var d = new Date();
     this.setData( {
       globalData : getApp().globalData,
@@ -46,10 +51,15 @@ Page({
       url: 'https://95858511.qcloud.la/enrolles/backhome/items?date=' + getApp().today(),
       method: 'GET',
       success: function (res) {
-         that.setData( {
-           
-           records: res.data})
-          console.log(that.data.records[0])
+         that.setData( {records: res.data})
+
+         
+         that.data.records.forEach( function(item) {
+             if (item.student == s )
+             {
+                that.setData( {applied : true})
+             }
+         })
       }
 
     })

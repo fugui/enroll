@@ -51,6 +51,13 @@ App({
     return yyyy + '-' + mm + '-' + dd;
   },
 
+  getStudent : function() {
+    if ( this.globalData.studentIndex >= 0 
+      && this.globalData.studentIndex < this.globalData.students.length ) {
+        return this.globalData.students[this.globalData.studentIndex]
+      }
+      return null
+  },
 
   login: function (sIdx, gIdx) {
     this.globalData.studentIndex = sIdx;
