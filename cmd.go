@@ -4,21 +4,22 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/fugui/enroll/router"
 	"github.com/gorilla/mux"
 )
 
+/**
+*  Supported RESTful APIs:
+*     /subscribers/{wechatID}   POST/GET/DELETE
+*     /enrolls/{enrollID}       POST/GET/DELETE
+*     /enrolles/{enrollID}/items/    POST  GET
+**/
 func main() {
 	rtr := mux.NewRouter()
-	rtr.HandleFunc("/user/{name:[a-z]+}/profile", profile).Methods("GET")
+	rtr.HandleFunc("/enrolles/{name:[^/]+}/items", router.Items)
 
 	http.Handle("/", rtr)
 
 	log.Println("Listening...")
-	http.ListenAndServe(":3000", nil)
-}
-
-func profile(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	name := params["name"]
-	w.Write([]byte("Hello " + name))
+	http.ListenAndServe(":80", nil)
 }

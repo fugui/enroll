@@ -15,6 +15,21 @@ Page({
     })
   },
 
+  onEnroll : function(e) {
+    console.log( 'on enroll' )
+    wx.request({
+      url: 'http://localhost/enrolles/backhome/items',
+      method: 'POST',
+      data : {
+        school: 'School Name',
+        banji:  'Middle(3)',
+        student: '01 Xijinpin',
+        backtime: '17:20',
+        applyby : '01 Mother'
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
