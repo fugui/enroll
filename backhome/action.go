@@ -39,6 +39,9 @@ func Action(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "can't read body", http.StatusBadRequest)
 		w.WriteHeader(http.StatusBadRequest)
 	}
+
+	log.Println("Post Item: ", body)
+
 	// the first step, get all fields
 	var item backItem
 	if json.Unmarshal(body, &item) != nil {
@@ -105,6 +108,8 @@ func writeToday(item backItem) bool {
 func GetHistory(w http.ResponseWriter, r *http.Request) {
 	date := r.URL.Query().Get("date")
 	if date != "" {
+		log.Println("Query history for ", date)
+
 		fileName := "backhome-" + date + ".json"
 		data, err := ioutil.ReadFile(fileName)
 		if err == nil {
