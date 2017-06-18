@@ -9,7 +9,10 @@ Page({
       backHome: "17:10",
       records : [],
       student : '',
-      applied : false
+      applied : false,
+      currentDay: '',
+      today : '',
+      yesterday : ''
   },
 
   toBind: function(e) {
@@ -19,16 +22,20 @@ Page({
   },
 
   onEnroll : function(e) {
+    var that = this
     console.log( 'on enroll' )
     wx.request({
       url: 'https://95858511.qcloud.la/enrolles/backhome/items',
       method: 'POST',
       data : {
-        school: 'School Name',
-        banji:  'Middle(3)',
+        school: '深圳外国语初中部',
+        banji:   '初二(3)班',
         student: this.data.student,
         backtime: this.data.backHome,
-        applyby : '01 Mother'
+        applyby: this.data.globalData.guardians[this.data.globalData.guardianIndex ]        
+      },
+      success: function (res) {
+        that.onToday()
       }
     })
   },
@@ -42,18 +49,23 @@ Page({
     this.setData({student:s } )
 
     var d = new Date();
+    d.setDate( d.getDate() -1);
+
     this.setData( {
-      globalData : getApp().globalData,
+      globalData: getApp().globalData,
+
+      today : getApp().getStrDate(new Date()),
+      currentDay: getApp().getStrDate(new Date()),
+      yesterday : getApp().getStrDate(d),
+
       backHome: d.getHours() + ":" + d.getMinutes()
     });
     
     wx.request({
-      url: 'https://95858511.qcloud.la/enrolles/backhome/items?date=' + getApp().today(),
+      url: 'https://95858511.qcloud.la/enrolles/backhome/items?date=' + this.data.today,
       method: 'GET',
       success: function (res) {
          that.setData( {records: res.data})
-
-         
          that.data.records.forEach( function(item) {
              if (item.student == s )
              {
@@ -61,9 +73,33 @@ Page({
              }
          })
       }
-
     })
+  },
 
+  history: function (hdate)
+  {
+    console.log( hdate )
+    var that = this;
+    this.setData({
+      currentDay : hdate
+    })
+    wx.request({
+      url: 'https://95858511.qcloud.la/enrolles/backhome/items?date=' + hdate,
+      method: 'GET',
+      success: function (res) {
+        that.setData({ records: res.data })
+      }
+    })
+  },
+
+  onPriorDay : function() 
+  {
+    this.history( this.data.yesterday )
+  },
+
+  onToday : function()
+  {
+    this.history( this.data.today )
   },
 
   /**

@@ -5,7 +5,7 @@
   </view>
 </view>
 
-<view wx:else class="section">
+<view wx:elif="{{!applied}}" class="section">
   <view class="weui-cells__title">
     {{student}}今日还未申报，其今日回家时间：
   </view>
@@ -19,7 +19,14 @@
   </view>
 </view>
 
+<view wx:else class="section">
+  <view class="weui-cells__title">
+    {{student}}今日已经申报，无需再次申报。
+  </view>
+</view>
+
 <view class="page-section-spacing">
+  {{currentDay}} 日申报数据：
   <view class="flex-wrp" style="flex-direction:row;">
     <view class="flex-item ">学生</view>
     <view class="flex-item ">到家时间</view>
@@ -32,5 +39,12 @@
     <view class="flex-item ">{{item.backtime}}</view>
     <view class="flex-item ">{{item.applyby}}</view>
     <view class="flex-item ">{{item.applytime}}</view>
+  </view>
+</view>
+
+<view class="section">
+<view class="weui-cell weui-cell_input">
+  <button type="default" bindtap="onPriorDay">昨天</button>
+  <button type="default" bindtap="onToday">今天</button>
   </view>
 </view>
