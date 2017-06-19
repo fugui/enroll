@@ -11,7 +11,7 @@
   </view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell weui-cell_input">
-      <picker mode="time" value="{{backHome}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+      <picker mode="time" value="{{backHome}}" bindchange="bindTimeChange">
         <view class="weui-input fgui-center">{{backHome}}</view>
       </picker>
       <button type="primary" bindtap="onEnroll"> 申 报 </button>

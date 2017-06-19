@@ -35,7 +35,7 @@ Page({
         applyby: this.data.globalData.guardians[this.data.globalData.guardianIndex ]        
       },
       success: function (res) {
-        that.onToday()
+        that.onLoad(undefined)
       }
     })
   },
@@ -100,6 +100,13 @@ Page({
   onToday : function()
   {
     this.history( this.data.today )
+  },
+
+  bindTimeChange : function(e)
+  {
+     this.setData ({
+       backHome: e.detail.value
+     })
   },
 
   /**

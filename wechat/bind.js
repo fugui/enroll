@@ -20,8 +20,8 @@ Page({
   },
 
   onBind: function(e) {
-    app.login( this.data.sIdx, this.data.gIdx );
-    wx.redirectTo({ "url":"enroll" });
+    getApp().login( this.data.sIdx, this.data.gIdx );
+    wx.reLaunch({ "url":"enroll" });
   },
 
   bindStudentChange: function (e) {
