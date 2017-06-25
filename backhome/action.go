@@ -71,16 +71,18 @@ func writeToday(item backItem) bool {
 		if err == nil {
 			json.Unmarshal(data, &todayItems)
 		}
-	}
-
-	if t != today {
-		for _, v := range todayItems {
-			v.BackTime = ""
-			v.ApplyBy = ""
-			v.ApplyTime = ""
+	} else if t != today {
+		fmt.Println("Change date, clean old data.")
+		for i := 0; i < len(todayItems); i++ {
+			//fmt.Println("Clean Data for ", todayItems[i].Student)
+			todayItems[i].School = ""
+			todayItems[i].Student = ""
+			todayItems[i].BackTime = ""
+			todayItems[i].ApplyBy = ""
+			todayItems[i].ApplyTime = ""
 		}
-		today = t
 	}
+	today = t
 
 	//update the cache
 	fs := strings.Fields(item.Student)
@@ -111,7 +113,7 @@ func GetHistory(w http.ResponseWriter, r *http.Request) {
 
 		fileName := "backhome-" + date + ".json"
 		data, err := ioutil.ReadFile(fileName)
-		if err == nil {
+		if err == nil && data != nil {
 			w.Write(data)
 			return
 		}

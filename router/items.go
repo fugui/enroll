@@ -15,8 +15,4 @@ func Items(w http.ResponseWriter, r *http.Request) {
 	} else {
 		w.WriteHeader(http.StatusBadRequest)
 	}
-
-	if r.Response.StatusCode >= 400 {
-		w.Write([]byte("error request"))
-	}
 }
